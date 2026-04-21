@@ -78,12 +78,12 @@ with tab1:
         # Predict probability if supported
         try:
             probabilities = model.predict_proba(scaled_input)[0]
-            prob_disease = probabilities[1] * 100
+            prob_disease = probabilities[0] * 100
         except AttributeError:
             prob_disease = None
         
         # Determine the target mapping. In typical UCI, target=1 handles presence/absence or risk=1 depends on author choice
-        if prediction == 1:
+        if prediction == 0:
             st.error(f"### ⚠️ High Risk of Heart Disease")
             st.markdown("The model detected clinical indicators strongly correlating with heart disease.")
             if prob_disease is not None:
